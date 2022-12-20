@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams, Outlet, NavLink, useLocation } from 'react-router-dom';
 import {
   Image,
@@ -16,19 +15,21 @@ export default function MovieDetails({ apiKey }) {
   const [movie, setMovie] = useState(null);
   const location = useLocation();
   const { movieId } = useParams();
+
   console.log(movieId);
+  const back = useRef(location.state?.from ?? '/movies');
+
   useEffect(() => {
     console.log('fetch');
     fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`)
       .then(response => response.json())
       .then(data => setMovie(data));
-  }, [movieId]);
+  }, [movieId, apiKey]);
 
-  console.log(location.state);
   return (
     movie && (
       <Wrapper>
-        <Button to={location.state?.from ?? '/movies'}>
+        <Button to={back.current.pathname + back.current.search}>
           <span>&#8592;</span>
           Go back
         </Button>

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Outlet, useParams, NavLink } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { Character } from './Cast.styled';
 const API_KEY = '229d78bf5ff22a8500f118108f52c3a1';
 
@@ -36,6 +36,7 @@ export default function Cast() {
               <Character key={id}>
                 <img
                   src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+                  alt={'images'}
                   width={200}
                 ></img>
                 <li key={id}>
