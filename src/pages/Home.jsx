@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
-import { TrendingMovies } from './Home.styled';
+import { TrendingMovies, Wrapper, Link } from './Home.styled';
 
 export default function Home({ apiKey }) {
   const [movies, setMovies] = useState([]);
@@ -14,18 +14,18 @@ export default function Home({ apiKey }) {
       .then(data => setMovies(data.results));
   }, [apiKey]);
   return (
-    <div>
-      <TrendingMovies>Today's trending</TrendingMovies>
+    <Wrapper>
+      <TrendingMovies>Today's trending </TrendingMovies>
       <ul>
         {movies.map(({ id, title }) => (
           <li key={id}>
-            <NavLink key={id} to={`/movies/${id}`} state={{ from: location }}>
+            <Link key={id} to={`/movies/${id}`} state={{ from: location }}>
               {title}
-            </NavLink>
+            </Link>
             <Outlet />
           </li>
         ))}
       </ul>
-    </div>
+    </Wrapper>
   );
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Reviews } from './Review.styled';
+import { Reviews, CustomerReview, Text } from './Review.styled';
 
 const API_KEY = '229d78bf5ff22a8500f118108f52c3a1';
 
@@ -18,12 +18,12 @@ export default function Review() {
   }, [movieId]);
 
   if (review.length === 0) {
-    return <p>No review available.</p>;
+    return <Text>No review available.</Text>;
   }
 
   return (
     review && (
-      <div>
+      <CustomerReview>
         <ul>
           {review.map(({ id, author, content }) => {
             return (
@@ -36,7 +36,7 @@ export default function Review() {
             );
           })}
         </ul>
-      </div>
+      </CustomerReview>
     )
   );
 }

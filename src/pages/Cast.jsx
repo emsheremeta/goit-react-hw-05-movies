@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
-import { Character } from './Cast.styled';
+import { Character, Actors } from './Cast.styled';
 const API_KEY = '229d78bf5ff22a8500f118108f52c3a1';
 
 export default function Cast() {
@@ -26,7 +26,7 @@ export default function Cast() {
   }
   return (
     cast && (
-      <div>
+      <Actors>
         {cast
           .filter(el => {
             return el.profile_path !== null;
@@ -59,7 +59,7 @@ export default function Cast() {
           </li>
         ))} */}
         <Outlet />
-      </div>
+      </Actors>
     )
   );
 }

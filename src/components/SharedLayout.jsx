@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
-import { CgPushChevronRightR } from 'react-icons/cg';
+// import { CgPushChevronRightR } from 'react-icons/cg';
 import { Outlet } from 'react-router-dom';
-import { Container, Logo, Header, Link } from './SharedLayout.styled';
+import { Container, Logo, Header, Link, Title } from './SharedLayout.styled';
 
 export const SharedLayout = () => {
   return (
@@ -9,13 +9,10 @@ export const SharedLayout = () => {
       <Container>
         <Header>
           <Logo>
-            <CgPushChevronRightR />
-            <span>Movie Swiftly</span>
+            <Title>Movie Guide</Title>
           </Logo>
           <nav>
-            <Link to="/" end>
-              Home
-            </Link>
+            <Link to="/">Home</Link>
             <Link to="/movies">Movies</Link>
           </nav>
         </Header>

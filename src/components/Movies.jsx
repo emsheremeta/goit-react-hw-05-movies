@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import { NavLink, useLocation, useSearchParams } from 'react-router-dom';
-import { Input, Button } from './Movie.styled';
+import { useLocation, useSearchParams } from 'react-router-dom';
+import { Input, Button, Wrap, Movies } from './Movies.styled';
 
 const API_KEY = '229d78bf5ff22a8500f118108f52c3a1';
 
@@ -36,11 +36,9 @@ export default function MoviesSearch() {
   }, [search]);
 
   return (
-    <div>
+    <Wrap>
       <form onSubmit={handleInputSubmit}>
-        <Button type="submit">
-          <span>Search</span>
-        </Button>
+        <Button type="submit"></Button>
 
         <Input
           onChange={handleInputChange}
@@ -52,18 +50,19 @@ export default function MoviesSearch() {
           value={movie ?? ''}
         />
       </form>
+      {movies?.length === 0 && <p>Sorry, there is no such movie.</p>}
       {movies && (
         <ul>
           {movies.map(({ id, title }) => (
             <li key={id}>
-              <NavLink key={id} to={`/movies/${id}`} state={{ from: location }}>
+              <Movies key={id} to={`/movies/${id}`} state={{ from: location }}>
                 {title}
-              </NavLink>
+              </Movies>
             </li>
           ))}
         </ul>
       )}
       <Toaster />
-    </div>
+    </Wrap>
   );
 }
